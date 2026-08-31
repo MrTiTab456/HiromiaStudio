@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiromia Studio | هیرومیا استودیو</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #ed145b;
+            --secondary-color: #1a1a2e;
+            --accent-color: #16213e;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-1: linear-gradient(135deg, #ed145b 0%, #ff6b9d 100%);
+            --gradient-2: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--gradient-2);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        
+        /* Header */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .logo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 50px rgba(237, 20, 91, 0.5);
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 50px rgba(237, 20, 91, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 80px rgba(237, 20, 91, 0.8);
+            }
+        }
+        
+        .logo i {
+            font-size: 100px;
+            color: white;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(237, 20, 91, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: #ccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(237, 20, 91, 0.4);
+        }
+        
+        .social-link i {
+            font-size: 24px;
+            color: var(--text-light);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator i {
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 50px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #ddd;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: rgba(237, 20, 91, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(237, 20, 91, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+            background: rgba(237, 20, 91, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+        
+        /* Videos Section */
+        .videos {
+            margin: 100px 20px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(237, 20, 91, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1a1a2e, #ed145b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(237, 20, 91, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .play-button i {
+            font-size: 30px;
+            color: white;
+            margin-left: 5px;
+        }
+        
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+            background: var(--primary-color);
+        }
+        
+        .video-info {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .watch-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+        
+        .watch-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(237, 20, 91, 0.4);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 50px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(237, 20, 91, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .contact-item i {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .logo i {
+                font-size: 70px;
+            }
+            
+            .about {
+                padding: 30px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="particles" id="particles"></div>
+        
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-play"></i>
+            </div>
+            <h1 class="fade-in">Hiromia Studio</h1>
+            <p class="tagline fade-in delay-1">هیرومیا استودیو | تولید محتوای خلاقانه</p>
+            
+            <div class="social-links fade-in delay-2">
+                <a href="https://www.aparat.com/Hiromia_studio" target="_blank" class="social-link">
+                    <i class="fas fa-video"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="about">
+            <h2 class="section-title">درباره هیرومیا استودیو</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>به کانال هیرومیا استودیو خوش آمدید! 🎬✨</p>
+                    <br>
+                    <p>ما در هیرومیا استودیو متعهد به تولید محتوای باکیفیت و خلاقانه هستیم. هدف ما ارائه ویدیوهایی است که هم سرگرم‌کننده باشند و هم آموزنده.</p>
+                    <br>
+                    <p>با دنبال کردن کانال ما، به دنیایی از محتوای متنوع دسترسی خواهید داشت که با عشق و تلاش فراوان برای شما عزیزان تهیه می‌شود.</p>
+                    <br>
+                    <p>🎯 مأموریت ما: خلق لحظات به‌یادماندنی از طریق محتوای ویدیویی خلاقانه</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="videoCount">+50</div>
+                        <div class="stat-label">ویدیو</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="viewCount">+10K</div>
+                        <div class="stat-label">بازدید</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="followerCount">+1K</div>
+                        <div class="stat-label">دنبال‌کننده</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">پشتیبانی</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="section videos">
+        <h2 class="section-title">آخرین ویدیوها</h2>
+        <div class="video-grid">
+            <!-- Video Card 1 -->
+            <div class="video-card fade-in">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/seed/video1/400/250" alt="Video Thumbnail">
+                    <div class="play-button" onclick="window.open('https://www.aparat.com/Hiromia_studio', '_blank')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">محتوای ویژه هیرومیا استودیو</h3>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> بازدید</span>
+                        <span><i class="fas fa-clock"></i> جدید</span>
+                    </div>
+                    <a href="https://www.aparat.com/Hiromia_studio" target="_blank" class="watch-btn">مشاهده در آپارات</a>
+                </div>
+            </div>
+
+            <!-- Video Card 2 -->
+            <div class="video-card fade-in delay-1">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/seed/video2/400/250" alt="Video Thumbnail">
+                    <div class="play-button" onclick="window.open('https://www.aparat.com/Hiromia_studio', '_blank')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">آموزش‌های تخصصی</h3>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> بازدید</span>
+                        <span><i class="fas fa-clock"></i> محبوب</span>
+                    </div>
+                    <a href="https://www.aparat.com/Hiromia_studio" target="_blank" class="watch-btn">مشاهده در آپارات</a>
+                </div>
+            </div>
+
+            <!-- Video Card 3 -->
+            <div class="video-card fade-in delay-2">
+                <div class="video-thumbnail">
+                    <img src="https://picsum.photos/seed/video3/400/250" alt="Video Thumbnail">
+                    <div class="play-button" onclick="window.open('https://www.aparat.com/Hiromia_studio', '_blank')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">محتوای خلاقانه و سرگرمی</h3>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> بازدید</span>
+                        <span><i class="fas fa-clock"></i> تازه</span>
+                    </div>
+                    <a href="https://www.aparat.com/Hiromia_studio" target="_blank" class="watch-btn">مشاهده در آپارات</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://www.aparat.com/Hiromia_studio" target="_blank" class="watch-btn" style="font-size: 1.2rem; padding: 15px 50px;">
+                <i class="fas fa-external-link-alt"></i> مشاهده تمام ویدیوها در آپارات
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="contact">
+            <h2 class="section-title">ارتباط با ما</h2>
+            <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                برای همکاری، پیشنهادها و سوالات خود می‌توانید از راه‌های زیر با ما در ارتباط باشید
+            </p>
+            <div class="contact-links">
+                <div class="contact-item">
+                    <i class="fas fa-video"></i>
+                    <span>آپارات: Hiromia_studio</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>اینستاگرام</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <span>تلگرام</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>ایمیل</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Hiromia Studio</div>
+            <p class="copyright">
+                © 2024 هیرومیا استودیو. تمامی حقوق محفوظ است.
+                <br>
+                طراحی شده با ❤️
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animate stats on scroll
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = '+' + Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    
+                    // Animate stats
+                    if (entry.target.classList.contains('stat-number')) {
+                        const text = entry.target.innerText;
+                        if (text.includes('K')) {
+                            const num = parseInt(text.replace('+', '').replace('K', ''));
+                            animateValue(entry.target, 0, num, 2000);
+                        } else if (text.includes('+')) {
+                            const num = parseInt(text.replace('+', ''));
+                            animateValue(entry.target, 0, num, 2000);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .video-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add fade-in class to elements when they come into view
+        window.addEventListener('scroll', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
